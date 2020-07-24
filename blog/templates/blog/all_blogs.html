@@ -1,10 +1,12 @@
 <h1> Here are all the blogs I wrote! </h1>
 <br>
 
+<h2> {{ blogs.count }} blogs{{ blogs.count|pluralize}} in total. </h2>
+
 {% for blog in blogs %}
 
 <a href="{% url 'blog:details' blog.id %}"><h2>{{ blog.title }}</h2></a>
-<h4>{{ blog.date }}</h4>
-<p>{{ blog.preview }}</p>
+<h4>{{ blog.date|date:'M d Y' }}</h4>
+<p>{{ blog.preview|striptags|truncatechars:100 }}</p>
 
 {% endfor %}

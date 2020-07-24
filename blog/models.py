@@ -7,3 +7,5 @@ class Blog(models.Model):
     preview = models.TextField()
     url = models.URLField(blank=True)
 
+    def __str__(self):
+        return self.title
