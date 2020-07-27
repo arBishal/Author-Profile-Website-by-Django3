@@ -1,20 +1,23 @@
-{% extends 'portfolio/base.html' %}
+{% extends "portfolio/base.html" %}
+
+{% load static %}
 
 {% block content %}
 
+<h1 id="blogtitle" class="font-weight-bold text-center">"অল্প-স্বল্প-গল্প"</h1>
 
-<h1> Here are all the blogs I wrote! </h1>
-<br>
-
-<h2> {{ blogs.count }} blogs{{ blogs.count|pluralize}} in total. </h2>
+<h3 class="text-center mb-5">মৌলিক আর অনুবাদ মিলিয়ে কিছু ছোটগল্প!</h3>
 
 {% for blog in blogs %}
-
-<a href="{% url 'blog:details' blog.id %}"><h2>{{ blog.title }}</h2></a>
-<h4>{{ blog.date|date:'M d Y' }}</h4>
-<p>{{ blog.preview|striptags|truncatechars:100 }}</p>
-
+<div class="row justify-content-center my-3">
+  <div class="col-md-10">
+    <a href="{% url 'blog:details' blog.id %}">
+      <h4>{{ blog.title }}</h4>
+    </a>
+    <h6 class="text-muted">{{ blog.date|date:'M d Y'|upper }}</h6>
+    <h5>{{ blog.preview|striptags|truncatechars:100 }}</h5>
+  </div>
+</div>
 {% endfor %}
 
-
-{% endblock%}
+{% endblock %}
